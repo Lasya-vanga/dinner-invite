@@ -73,7 +73,8 @@ src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Mzh6YXJjbnprNzRvM2JpaW1ybW
 
 <br>
 
-<button onclick="confirmDate()">Confirm</button>
+<button id="confirmBtn" onclick="confirmDate()">Confirm</button>
+<p id="confirmMsg" style="margin-top:15px;font-weight:bold;color:green;"></p>
 
 </div>
 
@@ -87,11 +88,17 @@ function confirmDate(){
 
 let email = document.getElementById("email").value
 let date = document.getElementById("date").value
+let btn = document.getElementById("confirmBtn")
 
 if(!email || !date){
-alert("Please enter email and select a date")
+document.getElementById("confirmMsg").innerText =
+"Please enter email and select a date."
 return
 }
+
+/* disable button */
+btn.disabled = true
+btn.innerText = "Sending..."
 
 emailjs.send(
 "service_014fkwn",
@@ -103,13 +110,25 @@ date: date
 "pc92_5qw64XCzTiJA"
 )
 
-.then(function(response){
-alert("Great! Date confirmed for " + date)
+.then(function(){
+
+document.getElementById("confirmMsg").innerText =
+"✅ Date confirmed! Looking forward to it."
+
+btn.innerText = "Confirmed"
+
 })
 
 .catch(function(error){
+
 console.log(error)
-alert("Email failed to send")
+
+document.getElementById("confirmMsg").innerText =
+"❌ Email failed to send. Try again."
+
+btn.disabled = false
+btn.innerText = "Confirm"
+
 })
 
 }
@@ -118,3 +137,4 @@ alert("Email failed to send")
 </body>
 
 </html>
+
