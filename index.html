@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dinner Invite</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:500px;
+text-align:center;
+}
+
+h1{
+margin-top:0;
+}
+
+button{
+padding:12px 26px;
+font-size:16px;
+border:none;
+border-radius:10px;
+margin:10px;
+cursor:pointer;
+}
+
+#yesBtn{
+background:#4CAF50;
+color:white;
+}
+
+#noBtn{
+background:#ddd;
+position:relative;
+}
+
+#noText{
+font-size:14px;
+color:#555;
+min-height:18px;
+margin-top:5px;
+}
+
+img{
+margin:20px 0;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Hey AB 👋</h1>
+
+<p>
+I would really like you to join me for lunch or dinner at Cheesecake Factory.
+</p>
+
+<img width="220"
+src="https://media.giphy.com/media/IEVrE6Nep0qhfVwzCt/giphy.gif">
+
+<br>
+
+<button onclick="goNext()" id="yesBtn">YES</button>
+
+<div>
+<button id="noBtn">NO</button>
+<div id="noText"></div>
+</div>
+
+</div>
+
+<script>
+
+function goNext(){
+window.location.href="confirm.html"
+}
+
+const noBtn=document.getElementById("noBtn")
+
+const messages=[
+"Seriously?? huh.",
+"Wait... really?",
+"Think again maybe?",
+"Don't be a Dick"
+]
+
+let i=0
+
+noBtn.addEventListener("mouseover",()=>{
+
+const x=Math.random()*200-100
+const y=Math.random()*120-60
+
+noBtn.style.transform=`translate(${x}px,${y}px)`
+
+document.getElementById("noText").innerText=
+messages[i % messages.length]
+
+i++
+
+})
+
+</script>
+
+</body>
+</html>

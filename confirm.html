@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm Plan</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:500px;
+text-align:center;
+}
+
+input{
+padding:10px;
+font-size:15px;
+border-radius:8px;
+border:1px solid #ccc;
+margin:8px;
+}
+
+button{
+padding:12px 26px;
+border:none;
+border-radius:10px;
+background:#4CAF50;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+img{
+margin:20px 0;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>
+Huh, Good choice 😏 <br>
+The NO button was never really an option.
+</h2>
+
+<img width="220"
+src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Mzh6YXJjbnprNzRvM2JpaW1ybWo2aGNiN240b202ZnJhN2VjemFreiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/U4LhzzpfTP7NZ4UlmH/giphy.gif">
+
+<p>Enter your email</p>
+
+<input id="email" type="email" placeholder="Your email">
+
+<br>
+
+<p>Pick a date</p>
+
+<input id="date" type="date">
+
+<br>
+
+<button onclick="confirmDate()">Confirm</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("pc92_5qw64XCzTiJA");
+
+function confirmDate(){
+
+let email = document.getElementById("email").value
+let date = document.getElementById("date").value
+
+if(!email || !date){
+alert("Please enter email and select a date")
+return
+}
+
+emailjs.send(
+"service_014fkwn",
+"template_lap32gl",
+{
+email: "honeyvanga11@gmail.com",
+date: date
+},
+"pc92_5qw64XCzTiJA"
+)
+
+.then(function(response){
+alert("Great! Date confirmed for " + date)
+})
+
+.catch(function(error){
+console.log(error)
+alert("Email failed to send")
+})
+
+}
+</script>
+
+</body>
+</html>
